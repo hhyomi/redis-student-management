@@ -1,4 +1,4 @@
-package com.example.studentmanagement;
+package com.biz.studentmanagement;
 
 import java.io.Serializable;
 import java.util.Date;

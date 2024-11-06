@@ -1,4 +1,4 @@
-package com.example.studentmanagement;
+package com.biz.studentmanagement;
 
 
 import redis.clients.jedis.Jedis;
@@ -15,13 +15,20 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/***
+ * 访问学生信息页面
+ */
 @WebServlet("/students")
 public class StudentServlet extends HttpServlet {
 //    private JedisPool jedisPool = new JedisPool("localhost", 6379);
     private JedisPool jedisPool = new JedisPool(new JedisPoolConfig(),"localhost", 6379,100,"123456");
 
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
         
         if ("delete".equals(action)) {
@@ -44,7 +51,6 @@ public class StudentServlet extends HttpServlet {
         if (request.getParameter("page") == null) {
             page = 1;
         }else{
-
             page = Integer.parseInt(request.getParameter("page"));
         }
 
@@ -60,6 +66,9 @@ public class StudentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("id");
         String name = request.getParameter("name");
         String birthday = request.getParameter("birthday");
@@ -93,6 +102,7 @@ public class StudentServlet extends HttpServlet {
     private void saveStudent(Student student) {
         try (Jedis jedis = jedisPool.getResource()) {
 //            jedis.auth("123456");
+
             jedis.hset("student:" + student.getId(), "name", student.getName());
             jedis.hset("student:" + student.getId(), "birthday", String.valueOf(student.getBirthday().getTime()));
             jedis.hset("student:" + student.getId(), "description", student.getDescription());
