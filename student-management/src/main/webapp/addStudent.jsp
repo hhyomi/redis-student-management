@@ -77,7 +77,7 @@
 
 <div class="container">
     <h2>新增学生</h2>
-    <form action="students" method="post">
+    <form action="${pageContext.request.contextPath}/students?action=add" method="post" >
         <input type="hidden" name="id" />
         <label for="name">姓名:</label>
         <input type="text" id="name" name="name" required />
