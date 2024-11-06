@@ -1,4 +1,4 @@
-package com.biz.studentmanagement;
+package com.biz.studentmanagement.entity;
 
 import java.io.Serializable;
 import java.util.Date;
