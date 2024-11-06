@@ -105,7 +105,7 @@
                 <td>${student.description}</td>
                 <td>${student.avgScore}</td>
                 <td>
-                    <a href="students?action=edit&id=${student.id}">修改</a>
+                    <a href="students?action=toedit&id=${student.id}">修改</a>
                     <a href="students?action=delete&id=${student.id}" onclick="return confirm('确定要删除吗?')">删除</a>
                 </td>
             </tr>

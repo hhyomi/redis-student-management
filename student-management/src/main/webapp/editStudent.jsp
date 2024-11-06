@@ -81,7 +81,7 @@
     <%
         Student student = (Student) request.getAttribute("student");
     %>
-    <form action="students" method="post">
+    <form action="students?action=edit" method="post">
         <input type="hidden" name="id" value="${student.id}" />
 
         <label for="name">姓名:</label>
@@ -98,7 +98,7 @@
 
         <input type="submit" value="提交" />
     </form>
-    <a href="students">返回学生列表</a>
+    <a href="/students">返回学生列表</a>
 </div>
 
 </body>
